@@ -1,5 +1,46 @@
-<div>
-    <div>
-        <h1>This is the contactProfile component</h1>
+<div class="flex-1 bg-red-300 rounded-tr-md rounded-br-md pl-3 pr-3">
+    <div v-if="$store.state.selectedContact && $store.state.selectedContact.name" class="flex flex-col items-center pt-3">
+        <img 
+            v-if="$store.state.selectedContact.image" 
+            class="w-[150px] h-[150px] object-cover rounded-full" 
+            :src="$store.state.selectedContact.image" 
+            alt="Portrait Photo">
+        <img 
+            v-else
+            class="w-[150px] h-[150px] object-cover rounded-full" 
+            src="/src/assets/avatar.png" 
+            alt="Portrait Photo">
+        <h1 class="text-xl font-bold">{{$store.state.selectedContact.name}}</h1>
+    </div>
+    
+    <div 
+        v-if="$store.state.selectedContact && $store.state.selectedContact.education" 
+        class="flex flex-col items-start">
+        <h2 class="text-lg font-bold">Education</h2>
+        <div v-for="education in $store.state.selectedContact.education" class="flex flex-row w-full justify-start">
+            <div class="w-[130px]">
+                <h3 class="font-bold">{{education.startYear}} - {{education.endYear}}</h3>
+            </div>
+            <div>
+                <h3 class="font-bold">{{education.institution}}</h3>
+                <h3>{{education.degree}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div 
+        v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience" 
+        class="flex flex-col items-start">
+        <h2 class="text-lg font-bold">Experience</h2>
+        <div v-for="workExperience in $store.state.selectedContact.workExperience" class="flex flex-row w-full justify-start">
+            <div class="w-[130px]">
+                <!-- Give some of the data an endyear and if no endyear is present use "Present" -->
+                <h3 class="font-bold">{{workExperience.startYear}} - {{workExperience.endYear ? workExperience.endYear : "Present"}}</h3>
+            </div>
+            <div>
+                <h3 class="font-bold">{{workExperience.institution}}</h3>
+                <h3>{{workExperience.title}}</h3>
+            </div>
+        </div>
     </div>
 </div>

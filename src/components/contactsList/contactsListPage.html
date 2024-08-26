@@ -1,7 +1,19 @@
-<div>
-  <div>
-    <!-- <font-awesome-icon icon="fa-solid fa-arrow-up-z-a" /> -->
-    <!-- <font-awesome-icon icon="fa-solid fa-arrow-down-a-z" /> -->
-    <p class="text-red-600">This is the contactsList component</p>
-  </div>
+<div id="contactsListContainer" class="w-1/3 bg-blue-300 rounded-tl-md rounded-bl-md">
+	<div class="p-3 flex flex-row w-full">
+		<div class="flex flex-col max-w-[300px] w-[90%]">
+			<label class="text-sm font-semibold" for="nameSearch">Search</label>
+			<input id="nameSearch" class="pl-1 pr-1" type="text" v-model="searchText" placeholder="Name">
+		</div>
+		<div class="flex flex-row items-end justify-end flex-1">
+			<font-awesome-icon v-if="sortDirection !== 'asc'" class="cursor-pointer hover:opacity-50 text-[20px]" icon="fa-solid fa-arrow-up-z-a" @click="toggleSortDirectionOnClick"/>
+			<font-awesome-icon v-else class="cursor-pointer hover:opacity-50 text-[20px]" icon="fa-solid fa-arrow-down-a-z" @click="toggleSortDirectionOnClick"/>
+		</div>
+	</div>
+
+	<div v-if="people !== []" class="p-3">
+		<div v-for="(contacts, letter) in groupedContacts" :key="letter">
+			{{letter}}
+			<li v-for="contact in contacts" :key="contact.id" @click="getContactProfileOnClick(contact.id)">{{contact.name}}</li>
+		</div>
+	</div>
 </div>
