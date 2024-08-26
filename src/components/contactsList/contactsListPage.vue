@@ -48,7 +48,7 @@ export default {
             // Set a new timeout to delay the search
             this.searchTimeout = setTimeout(() => {
                 this.getAllPeople(newSearchText);
-            }, 600); // 1-second debounce
+            }, 600); // 600ms debounce
         }
     },
     methods: {

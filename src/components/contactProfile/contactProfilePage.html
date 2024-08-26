@@ -1,46 +1,66 @@
-<div class="flex-1 bg-red-300 rounded-tr-md rounded-br-md pl-3 pr-3">
-    <div v-if="$store.state.selectedContact && $store.state.selectedContact.name" class="flex flex-col items-center pt-3">
-        <img 
-            v-if="$store.state.selectedContact.image" 
-            class="w-[150px] h-[150px] object-cover rounded-full" 
-            :src="$store.state.selectedContact.image" 
-            alt="Portrait Photo">
-        <img 
-            v-else
-            class="w-[150px] h-[150px] object-cover rounded-full" 
-            src="/src/assets/avatar.png" 
-            alt="Portrait Photo">
-        <h1 class="text-xl font-bold">{{$store.state.selectedContact.name}}</h1>
+<div id="contactProfileContainer" class="flex-1 bg-white rounded-tr-md rounded-br-md overflow-y-auto">
+  <div
+    v-if="$store.state.selectedContact && $store.state.selectedContact.name"
+    class="flex flex-row py-5 justify-center custom-bottom-shadow bg-[#e7e7e7]"
+  >
+    <img
+      v-if="$store.state.selectedContact.image"
+      class="w-[150px] h-[150px] object-cover rounded-full shadow-md"
+      :src="$store.state.selectedContact.image"
+      alt="Portrait Photo"
+    />
+    <img
+      v-else
+      class="w-[150px] h-[150px] object-cover rounded-full shadow-md"
+      src="/src/assets/avatar.png"
+      alt="Portrait Photo"
+    />
+    <div class="flex flex-col justify-center pl-3">
+      <h1 class="text-2xl font-bold text-[#4158A6]">{{$store.state.selectedContact.name}}</h1>
+      <p class="text-lg font-semibold leading-5 pb-1 text-[#FF451A]">{{$store.state.selectedContact.workExperience[0].title}}</p>
+      <p class="text-lg leading-5 pb-1 text-gray-700">{{$store.state.selectedContact.phoneNumber}}</p>
+      <a class="text-lg leading-5 pb-1 hover:opacity-50 text-gray-700" :href="`mailto:${$store.state.selectedContact.email}`">{{$store.state.selectedContact.email}}</a>
     </div>
-    
-    <div 
-        v-if="$store.state.selectedContact && $store.state.selectedContact.education" 
-        class="flex flex-col items-start">
-        <h2 class="text-lg font-bold">Education</h2>
-        <div v-for="education in $store.state.selectedContact.education" class="flex flex-row w-full justify-start">
-            <div class="w-[130px]">
-                <h3 class="font-bold">{{education.startYear}} - {{education.endYear}}</h3>
-            </div>
-            <div>
-                <h3 class="font-bold">{{education.institution}}</h3>
-                <h3>{{education.degree}}</h3>
-            </div>
-        </div>
-    </div>
+  </div>
 
-    <div 
-        v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience" 
-        class="flex flex-col items-start">
-        <h2 class="text-lg font-bold">Experience</h2>
-        <div v-for="workExperience in $store.state.selectedContact.workExperience" class="flex flex-row w-full justify-start">
-            <div class="w-[130px]">
-                <!-- Give some of the data an endyear and if no endyear is present use "Present" -->
-                <h3 class="font-bold">{{workExperience.startYear}} - {{workExperience.endYear ? workExperience.endYear : "Present"}}</h3>
-            </div>
-            <div>
-                <h3 class="font-bold">{{workExperience.institution}}</h3>
-                <h3>{{workExperience.title}}</h3>
-            </div>
-        </div>
+  <div
+    v-if="$store.state.selectedContact && $store.state.selectedContact.education"
+    class="flex flex-col items-start w-[375px] mx-auto my-4 bg-[#e7e7e7] rounded py-2 px-3 shadow-md"
+  >
+    <h2 class="text-lg text-[#4158A6] font-bold w-full border-b border-[#b1bdc7] mb-1">Education</h2>
+    <div
+      v-for="education in $store.state.selectedContact.education"
+      class="flex flex-row w-full justify-start mb-1"
+    >
+      <div class="w-[130px] flex-shrink-0">
+        <p class="font-bold text-gray-800">{{education.startYear}} - {{education.endYear}}</p>
+      </div>
+      <div>
+        <p class="font-bold text-gray-800">{{education.institution}}</p>
+        <p class="text-gray-700">{{education.degree}}</p>
+      </div>
     </div>
+  </div>
+
+  <div
+    v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience"
+    class="flex flex-col items-start w-[375px] mx-auto mb-4 bg-[#e7e7e7] rounded py-2 px-3 shadow-md"
+  >
+    <h2 class="text-lg font-bold w-full border-b border-[#b1bdc7] mb-1 text-[#4158A6]">Experience</h2>
+    <div
+      v-for="workExperience in $store.state.selectedContact.workExperience"
+      class="flex flex-row w-full justify-start mb-1"
+    >
+      <div class="w-[130px] flex-shrink-0">
+        <p class="font-bold text-gray-800">
+          {{workExperience.startYear}} - {{workExperience.endYear ? workExperience.endYear :
+          "Present"}}
+        </p>
+      </div>
+      <div>
+        <p class="font-bold text-gray-800">{{workExperience.institution}}</p>
+        <p class="text-gray-700">{{workExperience.title}}</p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,9 +1,9 @@
 <template>
-	<div class="container max-w-screen-xl mx-auto font-sans h-full">
+	<div class="container pb-2 max-w-screen-md mx-auto font-sans h-full">
 		<div class="h-[10%] flex flex-col justify-center items-center">
-			<h1 class="text-4xl font-bold">Address Book</h1>
+			<h1 class="text-4xl font-bold text-[#4158A6]">Address Book</h1>
 		</div>
-		<div class="flex flex-row pb-2 h-[90%]">
+		<div class="flex flex-row h-[90%] shadow-lg mx-4">
 			<contactsListPage />
 			<contactProfilePage />
 		</div>
