@@ -1,0 +1,94 @@
+<div
+    id="contactProfileContainer"
+    class="flex-1 bg-white h-full hidden md:block border border-[#e7e7e7] border-l-0 rounded-tr-md 
+    rounded-br-md overflow-y-auto"
+>
+    <div
+        v-if="$store.state.selectedContact && !$store.state.selectedContact.name"
+        class="initialContactProfileMessage flex flex-row h-full justify-center items-center"
+    >
+        <p class="text-gray-600 italic">Select a contact</p>
+    </div>
+
+    <div
+        v-if="$store.state.selectedContact && $store.state.selectedContact.name"
+        class="contactProfileHeader flex flex-row py-5 justify-center custom-bottom-shadow bg-gradient-to-br border-b 
+        from-[#ffffff] to-[#e7e7e7]"
+    >
+        <img
+            v-if="$store.state.selectedContact.image"
+            class="contactProfileImage w-[150px] h-[150px] border object-cover rounded-full shadow-md"
+            :src="$store.state.selectedContact.image"
+            alt="Portrait Photo"
+        />
+        <img
+            v-else
+            class="contactProfilePlaceholderImage w-[150px] h-[150px] border object-cover rounded-full shadow-md"
+            src="/src/assets/avatar.png"
+            alt="Portrait Photo"
+        />
+        <div class="flex flex-col justify-center pl-3">
+            <h1 class="contactProfileName text-2xl font-bold text-[#4158A6]">{{$store.state.selectedContact.name}}</h1>
+            <p class="contactProfileTitle text-lg font-semibold leading-5 pb-1 text-[#FF451A]">
+                {{$store.state.selectedContact.workExperience[0].title}}
+            </p>
+            <p class="contactProfilePhoneNumber text-lg leading-5 pb-1 text-gray-600">
+                {{$store.state.selectedContact.phoneNumber}}
+            </p>
+            <a
+                class="contactProfileEmail text-lg leading-5 pb-1 hover:opacity-50 text-gray-600"
+                :href="`mailto:${$store.state.selectedContact.email}`"
+                >{{$store.state.selectedContact.email}}</a
+            >
+        </div>
+    </div>
+
+    <div
+        v-if="$store.state.selectedContact && $store.state.selectedContact.education"
+        class="contactProfileEducationCard flex flex-col items-start w-[375px] mx-auto my-4 bg-[#e7e7e7] rounded-md border 
+        py-2 px-3 shadow-md bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
+    >
+        <h2 class="text-lg text-[#4158A6] font-bold w-full border-b border-[#b1bdc7] mb-1">
+            Education
+        </h2>
+        <div
+            v-for="education in $store.state.selectedContact.education"
+            class="contactProfileEducationList flex flex-row w-full justify-start mb-1"
+        >
+            <div class="w-[130px] flex-shrink-0">
+                <p class="contactProfileEducationYears font-bold text-gray-800">
+                    {{education.startYear}} - {{education.endYear}}
+                </p>
+            </div>
+            <div>
+                <p class="contactProfileEducationInstitution font-bold text-gray-800">{{education.institution}}</p>
+                <p class="contactProfileEducationDegree text-gray-600">{{education.degree}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div
+        v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience"
+        class="contactProfileExperienceCard flex flex-col items-start w-[375px] mx-auto mb-4 bg-[#e7e7e7] rounded-md border py-2 px-3 shadow-md 
+        bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
+    >
+        <h2 class="text-lg font-bold w-full border-b border-[#b1bdc7] mb-1 text-[#4158A6]">
+            Experience
+        </h2>
+        <div
+            v-for="workExperience in $store.state.selectedContact.workExperience"
+            class="contactProfileExperienceList flex flex-row w-full justify-start mb-1"
+        >
+            <div class="w-[130px] flex-shrink-0">
+                <p class="contactProfileExperienceYears font-bold text-gray-800">
+                    {{workExperience.startYear}} - {{workExperience.endYear ? workExperience.endYear
+                    : "Present"}}
+                </p>
+            </div>
+            <div>
+                <p class="contactProfileExperienceInstitution font-bold text-gray-800">{{workExperience.institution}}</p>
+                <p class="contactProfileExperienceTitle text-gray-600">{{workExperience.title}}</p>
+            </div>
+        </div>
+    </div>
+</div>

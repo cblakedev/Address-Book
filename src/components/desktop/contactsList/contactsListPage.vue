@@ -11,7 +11,7 @@ export default {
             sortDirection: 'asc',
             people: [],
             searchTimeout: null,
-            isMobile: false
+            isMobile: false,
         }
     },
     computed: {
@@ -42,7 +42,7 @@ export default {
                 return sortedSections;
             }
 
-            return []
+            return [];
         }
     },
     watch: {
@@ -64,7 +64,8 @@ export default {
                 });
         },
         mobileGetContactProfileOnClick(id) {
-            console.log('this is a mobile click');
+            this.getContactProfileOnClick(id);
+            this.$store.commit('toggleProfilePageOnClick');
         },
         getAllPeople() {
             contactListPageEndpoints.getAllPeople(`http://localhost:8080/api/people?name=${this.searchText}`)
@@ -77,7 +78,7 @@ export default {
         },
         checkScreenSize() {
             this.isMobile = window.innerWidth < 768;
-        }
+        },
     },
     created() {
         this.getAllPeople();
@@ -85,6 +86,7 @@ export default {
     mounted() {
         // Check the initial screen size when the component is mounted
         this.checkScreenSize();
+        
         // Add an event listener to update isMobile on window resize
         window.addEventListener('resize', this.checkScreenSize);
     },

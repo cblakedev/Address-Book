@@ -4,18 +4,7 @@
     export default {
         name: 'contact-profile-page',
         data() {
-            return {
-
-            }
+            return {}
         },
-        computed: {
-
-        },
-        methods: {
-
-        },
-        created() {
-            
-        }
     }
 </script>

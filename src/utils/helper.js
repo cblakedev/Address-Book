@@ -4,7 +4,7 @@ export default {
             const response = await fetch(url, options);
             const data = await response.json();
 
-            return data
+            return data;
         } catch (error) {
             return(error);
         }

@@ -1,9 +1,10 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 const store = createStore({
     state() {
         return {
             selectedContact: {},
+            isProfilePageOpen: false
         }
     },
     mutations: {
@@ -12,9 +13,14 @@ const store = createStore({
         },
         clearSelectedContact(state) {
             state.selectedContact = '';
+        },
+        toggleProfilePageOnClick(state) {
+            state.isProfilePageOpen = !state.isProfilePageOpen;
         }
     },
-    actions: {        }
+    actions: {
+
+    }
 })
 
-export default store
+export default store;
