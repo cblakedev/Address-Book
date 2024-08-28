@@ -39,7 +39,7 @@
                 v-for="contact in contacts"
                 :key="contact.id"
                 class="contactName border-b border-[#b1bdc7] text-gray-600 cursor-pointer hover:opacity-50"
-                @click="isMobile ? mobileGetContactProfileOnClick(contact.id) : getContactProfileOnClick(contact.id)"
+                @click="getContactProfileOnClick(contact.id)"
             >
                 {{contact.name}}
             </p>

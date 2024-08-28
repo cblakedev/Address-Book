@@ -34,13 +34,16 @@
         />
         <div class="flex flex-col items-center xs:items-start justify-center pl-3">
             <h1 class="mobileContactProfileName text-2xl font-bold text-[#4158A6]">{{$store.state.selectedContact.name}}</h1>
-            <p class="mobileContactProfileTitle text-lg font-semibold leading-5 pb-1 text-[#FF451A]">
+            <p  v-if="$store.state.selectedContact.workExperience && $store.state.selectedContact.workExperience.length > 0"
+                class="mobileContactProfileTitle text-lg font-semibold leading-5 pb-1 text-[#FF451A]">
                 {{$store.state.selectedContact.workExperience[0].title}}
             </p>
-            <p class="mobileContactProfilePhoneNumber text-lg leading-5 pb-1 text-gray-600">
+            <p  v-if="$store.state.selectedContact.phoneNumber"
+                class="mobileContactProfilePhoneNumber text-lg leading-5 pb-1 text-gray-600">
                 {{$store.state.selectedContact.phoneNumber}}
             </p>
             <a
+                v-if="$store.state.selectedContact.email"
                 class="mobileContactProfileEmail text-lg leading-5 pb-1 hover:opacity-50 text-gray-600"
                 :href="`mailto:${$store.state.selectedContact.email}`"
             >
@@ -51,7 +54,7 @@
 
     <div class="px-3 xs:px-0">
         <div
-            v-if="$store.state.selectedContact && $store.state.selectedContact.education"
+            v-if="$store.state.selectedContact.education && $store.state.selectedContact.education.length > 0"
             class="mobileContactProfileEducationCard flex flex-col items-start w-full xs:w-[375px] mx-auto my-4 bg-[#e7e7e7] rounded-md border py-2 px-3 
             shadow-md bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
         >
@@ -77,8 +80,8 @@
         </div>
 
         <div
-            v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience"
-            class="mobileContactProfileExperienceCard flex flex-col items-start w-full xs:w-[375px] mx-auto mb-4 bg-[#e7e7e7] rounded-md border py-2 px-3 
+            v-if="$store.state.selectedContact.workExperience && $store.state.selectedContact.workExperience.length > 0"
+            class="mobileContactProfileExperienceCard flex flex-col items-start w-full xs:w-[375px] mx-auto my-4 mb-4 bg-[#e7e7e7] rounded-md border py-2 px-3 
             shadow-md bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
         >
             <h2 class="xs:text-md font-bold w-full border-b border-[#b1bdc7] mb-1 text-[#4158A6]">

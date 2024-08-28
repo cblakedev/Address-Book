@@ -6,7 +6,7 @@
 
 ## Project Setup
 
-- Install dependencies
+- Install dependencies.
 
 ```sh
 npm install
@@ -17,7 +17,7 @@ npm install
 The server that's needed for this project can be cloned in this repo:
 - https://github.com/cblakedev/Address-Book-BE
 
-Once the server is running, the project can be started using the command below.
+Use the command below to start the project.
 
 ```sh
 npm run dev

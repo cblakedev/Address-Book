@@ -29,13 +29,16 @@
         />
         <div class="flex flex-col justify-center pl-3">
             <h1 class="contactProfileName text-2xl font-bold text-[#4158A6]">{{$store.state.selectedContact.name}}</h1>
-            <p class="contactProfileTitle text-lg font-semibold leading-5 pb-1 text-[#FF451A]">
+            <p  v-if="$store.state.selectedContact.workExperience && $store.state.selectedContact.workExperience.length > 0"
+                class="contactProfileTitle text-lg font-semibold leading-5 pb-1 text-[#FF451A]">
                 {{$store.state.selectedContact.workExperience[0].title}}
             </p>
-            <p class="contactProfilePhoneNumber text-lg leading-5 pb-1 text-gray-600">
+            <p v-if="$store.state.selectedContact.phoneNumber"
+                class="contactProfilePhoneNumber text-lg leading-5 pb-1 text-gray-600">
                 {{$store.state.selectedContact.phoneNumber}}
             </p>
             <a
+                v-if="$store.state.selectedContact.email"
                 class="contactProfileEmail text-lg leading-5 pb-1 hover:opacity-50 text-gray-600"
                 :href="`mailto:${$store.state.selectedContact.email}`"
                 >{{$store.state.selectedContact.email}}</a
@@ -44,7 +47,7 @@
     </div>
 
     <div
-        v-if="$store.state.selectedContact && $store.state.selectedContact.education"
+        v-if="$store.state.selectedContact.education && $store.state.selectedContact.education.length > 0"
         class="contactProfileEducationCard flex flex-col items-start w-[375px] mx-auto my-4 bg-[#e7e7e7] rounded-md border 
         py-2 px-3 shadow-md bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
     >
@@ -68,8 +71,8 @@
     </div>
 
     <div
-        v-if="$store.state.selectedContact && $store.state.selectedContact.workExperience"
-        class="contactProfileExperienceCard flex flex-col items-start w-[375px] mx-auto mb-4 bg-[#e7e7e7] rounded-md border py-2 px-3 shadow-md 
+        v-if="$store.state.selectedContact.workExperience && $store.state.selectedContact.workExperience.length > 0"
+        class="contactProfileExperienceCard flex flex-col items-start w-[375px] mx-auto mb-4 my-4 bg-[#e7e7e7] rounded-md border py-2 px-3 shadow-md 
         bg-gradient-to-br from-[#ffffff] to-[#e7e7e7]"
     >
         <h2 class="text-lg font-bold w-full border-b border-[#b1bdc7] mb-1 text-[#4158A6]">

@@ -1,4 +1,4 @@
-import apiHelper from '../../../utils/helper'
+import apiHelper from '../../../utils/helper';
 
 export default {
     getAllPeople(url) {
@@ -7,7 +7,7 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
     },
     getContactByID(url) {
         return apiHelper.http(url, {
@@ -15,6 +15,6 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
     }
 }

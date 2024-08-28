@@ -26,15 +26,12 @@ export default {
                         sections[firstLetter] = [];
                     }
 
-                    // Push an object with both id and name
                     sections[firstLetter].push({ id: contact.id, name: contact.name });
                 });
 
-                // Sort the sections alphabetically and adjust sorting order
                 const sortedSections = Object.keys(sections)
                     .sort((a, b) => this.sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a))
                     .reduce((sortedSections, key) => {
-                        // Sort each section based on name property of the objects
                         sortedSections[key] = sections[key].sort((a, b) => this.sortDirection === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
                         return sortedSections;
                     }, {});
@@ -47,13 +44,11 @@ export default {
     },
     watch: {
         searchText(newSearchText) {
-            // Clear the previous timeout if there is one
             clearTimeout(this.searchTimeout);
 
-            // Set a new timeout to delay the search
             this.searchTimeout = setTimeout(() => {
                 this.getAllPeople(newSearchText);
-            }, 500); // 500ms debounce
+            }, 500);
         }
     },
     methods: {
@@ -61,11 +56,11 @@ export default {
             contactListPageEndpoints.getAllPeople(`http://localhost:8080/api/people/profile?id=${id}`)
                 .then((data) => {
                     this.$store.commit('updateSelectedContact', data);
-                });
-        },
-        mobileGetContactProfileOnClick(id) {
-            this.getContactProfileOnClick(id);
-            this.$store.commit('toggleProfilePageOnClick');
+
+                    if (this.isMobile) {
+                        this.$store.commit('toggleProfilePageOnClick');
+                    }
+                });        
         },
         getAllPeople() {
             contactListPageEndpoints.getAllPeople(`http://localhost:8080/api/people?name=${this.searchText}`)
@@ -84,14 +79,11 @@ export default {
         this.getAllPeople();
     },
     mounted() {
-        // Check the initial screen size when the component is mounted
         this.checkScreenSize();
         
-        // Add an event listener to update isMobile on window resize
         window.addEventListener('resize', this.checkScreenSize);
     },
     beforeUnmount() {
-        // Remove the event listener to prevent memory leaks
         window.removeEventListener('resize', this.checkScreenSize);
     }
 }
