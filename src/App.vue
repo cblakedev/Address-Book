@@ -1,47 +1,31 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="container pt-[60px] xs:pt-[100px] md:pb-2 max-w-screen-md mx-auto font-sans h-full">
+        <div class="flex flex-row absolute top-0 left-0 items-center w-full py-3 bg-white custom-bottom-shadow">
+            <img class="width-[25px] h-[25px] pl-3" src="/genesys-logo.png" alt="Address Book Logo">
+            <h1 class="text-3xl font-bold text-[#4158A6] px-3">Address Book</h1>
+        </div>
+        <div class="flex flex-row justify-center h-full shadow-lg rounded-md md:mx-4">
+            <contactsListPage />
+            <contactProfilePage />
+            <mobileContactProfilePage />
+        </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import contactsListPage from './components/desktop/contactsList/contactsListPage.vue';
+import contactProfilePage from './components/desktop/contactProfile/contactProfilePage.vue';
+import mobileContactProfilePage from './components/mobile/mobileContactProfile/mobileContactProfilePage.vue';
+
+export default {
+    name: 'app',
+    components: {
+        contactsListPage,
+        contactProfilePage,
+        mobileContactProfilePage
+    },
+    data() {
+        return {}
+    }
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+</script>

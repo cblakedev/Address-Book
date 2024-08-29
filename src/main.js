@@ -1,6 +1,11 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import rootComponent from './App.vue';
+import './css/style.css';
+import store from './store/store.js';
+import FontAwesomeIcon from './utils/font-awesome';
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const App = createApp(rootComponent);
 
-createApp(App).mount('#app')
+App.use(store);
+App.component('font-awesome-icon', FontAwesomeIcon);
+App.mount('#app');
